@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
 from bson import ObjectId
-from schemas.film_schema import Film
-from db.film_db import film_collection
+from src.schemas.film_schema import Film
+from src.db.film_db import film_collection
 
 router = APIRouter()
 
