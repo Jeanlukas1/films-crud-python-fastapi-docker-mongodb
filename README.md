@@ -43,7 +43,11 @@ films-crud-python-fastapi-docker-mongodb/
 │   │   └── film_schema.py      # Modelo de dados (Pydantic)
 │   └── docker/
 │       └── docker-compose.yml  # Configuração Docker
-└── README.md
+├── doc/
+│   └── EndPoints.postman_collection.json  # Coleção Postman com todos os endpoints
+├── .gitignore
+├── README.md
+└── .git/
 ```
 
 ## 🔧 Instalação
@@ -283,7 +287,14 @@ A FastAPI fornece documentação interativa automática! Após iniciar a aplica�
 
 Importe a coleção Postman com todos os endpoints já configurados:
 
-**[Abrir Coleção Postman](https://www.postman.com/lukasjean745-1800510/workspace/filme-crud-fastapi-docker-mongodb)**
+**[Abrir Coleção Postman Online](https://www.postman.com/lukasjean745-1800510/workspace/filme-crud-fastapi-docker-mongodb)**
+
+Ou importe localmente a coleção em `doc/EndPoints.postman_collection.json`:
+
+1. Abra o Postman
+2. Clique em **Import**
+3. Selecione o arquivo `doc/EndPoints.postman_collection.json`
+4. A coleção será adicionada com todos os endpoints configurados
 
 A coleção inclui exemplos de requisições para todos os endpoints da API, facilitando os testes e a integração com outros serviços.
 
