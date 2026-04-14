@@ -1,5 +1,13 @@
+import os
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb://localhost:27018/")
-db = client["film_database"]
-film_collection = db["films"]
+load_dotenv()
+
+MONGODB_URL = os.getenv("MONGODB_URL")
+MONGODB_DATABASE = os.getenv("MONGODB_DATABASE")
+MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION")
+
+client = MongoClient(MONGODB_URL)
+db = client[MONGODB_DATABASE]
+film_collection = db[MONGODB_COLLECTION]
