@@ -1,0 +1,167 @@
+{
+  "info": {
+    "_postman_id": "95ae9446-74ad-44a1-bbfb-830917be5865",
+    "name": "EndPoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53388125",
+    "_collection_link": "https://go.postman.co/collection/53388125-95ae9446-74ad-44a1-bbfb-830917be5865?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Film",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"O silencio dos inocentes\",\r\n    \"description\": \"O Silêncio dos Inocentes (1991) é um aclamado thriller psicológico e suspense onde a jovem agente do FBI, Clarice Starling (Jodie Foster), busca a ajuda do brilhante psiquiatra e assassino canibal encarcerado, Dr. Hannibal Lecter (Anthony Hopkins), para capturar um serial killer, 'Buffalo Bill', que esfolia suas vítimas\",\r\n    \"genre\": \"Suspense\",\r\n    \"year\": 1991\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{urlBase}}/filmes",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "filmes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Films",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "{{urlBase}}/filmes",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "filmes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Film",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"O pequenino\",\r\n    \"description\": \"O Pequenino (2006) é uma comédia pastelão estrelada por Marlon Wayans e Shawn Wayans, dirigida por Keenen Ivory Wayans.\" ,\r\n    \"genre\": \"Comédia\",\r\n    \"year\": 2006\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{urlBase}}/filmes/{{_id}}",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "filmes",
+            "{{_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Film",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "{{urlBase}}/filmes/{{_id}}",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "filmes",
+            "{{_id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
