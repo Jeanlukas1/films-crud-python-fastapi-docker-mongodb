@@ -46,7 +46,6 @@ films-crud-python-fastapi-docker-mongodb/
 ├── main.py                      # Aplicação FastAPI principal (raiz)
 ├── requirements.txt             # Dependências Python (raiz)
 ├── .env                         # Variáveis de ambiente (não commit)
-├── .env.example                 # Template de variáveis de ambiente
 ├── venv/                        # Ambiente virtual Python
 ├── .gitignore
 ├── README.md
