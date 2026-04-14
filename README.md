@@ -30,8 +30,6 @@ Antes de começar, você precisará ter instalado:
 ```
 films-crud-python-fastapi-docker-mongodb/
 ├── src/
-│   ├── main.py                 # Aplicação FastAPI principal
-│   ├── requirements.txt         # Dependências Python
 │   ├── db/
 │   │   ├── __init__.py
 │   │   └── film_db.py          # Configuração do MongoDB
@@ -44,7 +42,10 @@ films-crud-python-fastapi-docker-mongodb/
 │   └── docker/
 │       └── docker-compose.yml  # Configuração Docker
 ├── doc/
-│   └── EndPoints.postman_collection.json  # Coleção Postman com todos os endpoints
+│   └── EndPoints.postman_collection.json  # Coleção Postman com todos endpoints
+├── main.py                      # Aplicação FastAPI principal (raiz)
+├── requirements.txt             # Dependências Python (raiz)
+├── venv/                        # Ambiente virtual Python
 ├── .gitignore
 ├── README.md
 └── .git/
@@ -60,9 +61,9 @@ git clone https://github.com/Jeanlukas1/films-crud-python-fastapi-docker-mongodb
 cd films-crud-python-fastapi-docker-mongodb
 ```
 
-2. **Navegue até a pasta src:**
+2. **Navegue até a pasta src (onde está o docker-compose):**
 ```bash
-cd src
+cd src/docker
 ```
 
 3. **Inicie os contêineres:**
@@ -70,7 +71,12 @@ cd src
 docker-compose up -d
 ```
 
-4. **A aplicação estará disponível em:**
+4. **Volte à raiz do projeto:**
+```bash
+cd ../..
+```
+
+5. **A aplicação estará disponível em:**
 ```
 http://localhost:8000
 ```
@@ -80,7 +86,7 @@ http://localhost:8000
 1. **Clone o repositório:**
 ```bash
 git clone https://github.com/Jeanlukas1/films-crud-python-fastapi-docker-mongodb.git
-cd films-crud-python-fastapi-docker-mongodb/src
+cd films-crud-python-fastapi-docker-mongodb
 ```
 
 2. **Crie um ambiente virtual:**
@@ -99,7 +105,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. **Configure as variáveis de ambiente** (crie um arquivo `.env`):
+4. **Configure as variáveis de ambiente** (crie um arquivo `.env` na raiz):
 ```env
 MONGODB_URL=mongodb://localhost:27017/
 DATABASE_NAME=filmes_db
@@ -322,7 +328,7 @@ docker-compose down -v
 
 ## 🔐 Variáveis de Ambiente
 
-Crie um arquivo `.env` na pasta `src/` com as seguintes variáveis (opcional):
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis (opcional):
 
 ```env
 # MongoDB
