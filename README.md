@@ -32,7 +32,7 @@ films-crud-python-fastapi-docker-mongodb/
 ├── src/
 │   ├── db/
 │   │   ├── __init__.py
-│   │   └── film_db.py          # Configuração do MongoDB
+│   │   └── film_db.py          # Configuração do MongoDB com variáveis de ambiente
 │   ├── routes/
 │   │   ├── __init__.py
 │   │   └── film_route.py       # Endpoints da API
@@ -45,6 +45,8 @@ films-crud-python-fastapi-docker-mongodb/
 │   └── EndPoints.postman_collection.json  # Coleção Postman com todos endpoints
 ├── main.py                      # Aplicação FastAPI principal (raiz)
 ├── requirements.txt             # Dependências Python (raiz)
+├── .env                         # Variáveis de ambiente (não commit)
+├── .env.example                 # Template de variáveis de ambiente
 ├── venv/                        # Ambiente virtual Python
 ├── .gitignore
 ├── README.md
@@ -105,10 +107,33 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. **Configure as variáveis de ambiente** (crie um arquivo `.env` na raiz):
+4. **Configure as variáveis de ambiente:**
+
+Copie o arquivo `.env.example` como referência e crie um arquivo `.env` na raiz do projeto:
+
+```bash
+# Windows
+copy .env.example .env
+
+# Linux/Mac
+cp .env.example .env
+```
+
+Depois edite o arquivo `.env` com suas configurações (se necessário):
+
 ```env
-MONGODB_URL=mongodb://localhost:27017/
-DATABASE_NAME=filmes_db
+# MongoDB Configuration
+MONGODB_URL=mongodb://localhost:27018/
+MONGODB_DATABASE=film_database
+MONGODB_COLLECTION=films
+
+# FastAPI Configuration
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
+
+# Environment
+ENVIRONMENT=development
 ```
 
 5. **Inicie a aplicação:**
@@ -305,18 +330,43 @@ Ou importe localmente a coleção em `doc/EndPoints.postman_collection.json`:
 A coleção inclui exemplos de requisições para todos os endpoints da API, facilitando os testes e a integração com outros serviços.
 
 ## 🐳 Gerenciando Docker
+O projeto utiliza o **python-dotenv** para gerenciar variáveis de ambiente. Um arquivo `.env` é automaticamente carregado na inicialização da aplicação.
 
-**Verificar status dos contêineres:**
+### Arquivo `.env.example`
+
+Um arquivo `.env.example` é fornecido como template. Copie-o para criar seu próprio `.env`:
+
 ```bash
-docker-compose ps
+cp .env.example .env
 ```
 
-**Ver logs da aplicação:**
-```bash
-docker-compose logs -f app
+### Variáveis Disponíveis
+
+```env
+# MongoDB Configuration
+MONGODB_URL=mongodb://localhost:27018/      # URL de conexão do MongoDB
+MONGODB_DATABASE=film_database              # Nome do banco de dados
+MONGODB_COLLECTION=films                    # Nome da coleção
+
+# FastAPI Configuration
+API_HOST=0.0.0.0                           # Host do servidor (0.0.0.0 para aceitar conexões externas)
+API_PORT=8000                              # Porta do servidor
+DEBUG=True                                 # Modo debug (True/False)
+
+# Environment
+ENVIRONMENT=development                     # Ambiente (development/production)
 ```
 
-**Parar os contêineres:**
+### Segurança
+
+⚠️ **IMPORTANTE:** Adicione `.env` ao seu `.gitignore` para evitar expor dados sensíveis:
+
+```gitignore
+# .gitignore
+.env
+```
+
+O arquivo `.env.example` pode ser compartilhado no repositório como referência de configuração.arar os contêineres:**
 ```bash
 docker-compose down
 ```
