@@ -1,6 +1,7 @@
 services:
   mongodb:
     image: mongo:7
+    container_name: films_mongo_db
     ports:
       - "27018:27017"
     volumes:
