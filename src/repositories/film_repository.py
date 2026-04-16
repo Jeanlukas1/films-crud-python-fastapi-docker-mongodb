@@ -13,3 +13,8 @@ def update_repository(_id, film):
         {"_id": ObjectId(_id)},
         {"$set": film_dict(film)}
         )
+
+def delete_repository(_id):
+    return film_collection.delete_one(
+        {"_id": filter_object(_id)}
+    )

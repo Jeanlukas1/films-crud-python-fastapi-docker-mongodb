@@ -16,3 +16,7 @@ class ListFilmResponseModel(BaseModel):
     
 class UpdateFilmRespondeModel(BaseModel):
     message: str
+    
+class DeleteFilmResponseModel(BaseModel):
+    message: str
+    id: str

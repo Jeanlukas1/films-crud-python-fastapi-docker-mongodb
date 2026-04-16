@@ -16,11 +16,6 @@ def list_films():
 def update_film(_id: str, film: Film):
     return update_service(_id, film)
 
-# @router.delete("/filmes/{_id}", status_code=200)
-# def delete_film(_id: str):
-#     filter_object = {"_id": ObjectId(_id)}
-#     result = film_collection.delete_one(filter_object)
-    
-#     if result.deleted_count == 0:
-#         raise HTTPException(status_code=404 , detail="Film not found!")
-#     return {"message": "Film deleted succefully!", "id": _id}
+@router.delete("/filmes/{_id}", status_code=200, response_model=DeleteFilmResponseModel)
+def delete_film(_id: str):
+    return delete_service(_id)
