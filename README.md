@@ -32,24 +32,68 @@ films-crud-python-fastapi-docker-mongodb/
 ├── src/
 │   ├── db/
 │   │   ├── __init__.py
-│   │   └── film_db.py          # Configuração do MongoDB com variáveis de ambiente
+│   │   └── film_db.py              # Configuração do MongoDB
+│   ├── repositories/
+│   │   ├── __init__.py
+│   │   └── film_repository.py      # Acesso ao banco de dados
+│   ├── services/
+│   │   ├── __init__.py
+│   │   └── film_service.py         # Lógica de negócio
 │   ├── routes/
 │   │   ├── __init__.py
-│   │   └── film_route.py       # Endpoints da API
+│   │   └── film_route.py           # Endpoints da API
 │   ├── schemas/
 │   │   ├── __init__.py
-│   │   └── film_schema.py      # Modelo de dados (Pydantic)
+│   │   └── film_schema.py          # Modelos de dados (Pydantic)
 │   └── docker/
-│       └── docker-compose.yml  # Configuração Docker
+│       └── docker-compose.yml      # Configuração Docker Compose
 ├── doc/
-│   └── EndPoints.postman_collection.json  # Coleção Postman com todos endpoints
-├── main.py                      # Aplicação FastAPI principal (raiz)
-├── requirements.txt             # Dependências Python (raiz)
-├── .env                         # Variáveis de ambiente (não commit)
-├── venv/                        # Ambiente virtual Python
+│   └── EndPoints.postman_collection.json  # Coleção Postman
+├── main.py                          # Aplicação FastAPI principal
+├── requirements.txt                 # Dependências Python
+├── .env                             # Variáveis de ambiente (não commit)
+├── venv/                            # Ambiente virtual Python
 ├── .gitignore
 ├── README.md
 └── .git/
+```
+
+## 🏗️ Arquitetura em Camadas
+
+O projeto segue o padrão de **arquitetura em camadas**:
+
+```
+┌─────────────────────────────────┐
+│      Routes (Endpoints)         │  ← Recebe requisições HTTP
+├─────────────────────────────────┤
+│      Services (Lógica)          │  ← Processa dados e validações
+├─────────────────────────────────┤
+│    Repositories (Dados)         │  ← Acessa o banco de dados
+├─────────────────────────────────┤
+│      Database (MongoDB)         │  ← Armazena dados
+└─────────────────────────────────┘
+```
+
+### Responsabilidades de cada camada:
+
+- **Routes** (`film_route.py`): Define os endpoints HTTP e valida entrada
+- **Services** (`film_service.py`): Converte dados, aplica regras de negócio, tratamento de erros
+- **Repositories** (`film_repository.py`): Operações CRUD com o MongoDB
+- **Schemas** (`film_schema.py`): Validação de dados com Pydantic
+- **Database** (`film_db.py`): Configuração e conexão com MongoDB
+
+### Fluxo de uma Requisição:
+
+```
+1. Cliente faz requisição HTTP POST /filmes
+           ↓
+2. film_route.py recebe a requisição
+           ↓
+3. film_service.py processa e valida os dados
+           ↓
+4. film_repository.py insere no MongoDB
+           ↓
+5. Resposta é retornada ao cliente
 ```
 
 ## 🔧 Instalação
