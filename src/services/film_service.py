@@ -11,12 +11,11 @@ def format_id(film):
     return film
 
 def film_dict(film):
-    film.model_dump(mode="json")
-    return film
+    return film.model_dump(mode="json")
 
 def create_service(film: Film):
-    film_dict(film)
-    result = create_repository(film_dict)
+    data = film_dict(film)
+    result = create_repository(data)
     
     return {
         "message": "Film Created",
