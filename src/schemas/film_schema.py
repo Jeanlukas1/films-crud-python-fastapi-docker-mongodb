@@ -5,3 +5,11 @@ class Film(BaseModel):
     description: str
     genre: str
     year: int
+    
+class CreateFilmResponseModel(BaseModel):
+    message: str
+    id: str
+    
+class ListFilmResponseModel(BaseModel):
+    films: object
+    length: int

@@ -1,35 +1,15 @@
 from fastapi import APIRouter
-from fastapi import HTTPException
-from bson import ObjectId
-from src.schemas.film_schema import Film
-from src.db.film_db import film_collection
+from services.film_service import *
 
 router = APIRouter()
 
-@router.post("/filmes", status_code=201)
+@router.post("/filmes", status_code=201, response_model=CreateFilmResponseModel)
 def create_film(film: Film):
-    film_dict = film.model_dump(mode="json")
-    result = film_collection.insert_one(film_dict)
+    return create_service()
     
-    return {
-        "message": "Film Created",
-        "id": str(result.inserted_id)
-    }
-    
-@router.get("/filmes", status_code=200)
+@router.get("/filmes", status_code=200, response_model=ListFilmResponseModel)
 def list_films():
-    films = []
-    
-    for film in film_collection.find():
-        film["_id"] = str(film["_id"])
-        films.append(film)
-        
-    length = len(films)
-        
-    return {
-        "films": films, 
-        "length": length
-    }
+    return list_service()
 
 @router.put("/filmes/{_id}", status_code=200)
 def update_film(_id: str, film: Film):
