@@ -6,7 +6,7 @@ router = APIRouter()
 
 @router.post("/filmes", status_code=201, response_model=CreateFilmResponseModel)
 def create_film(film: Film):
-    return create_service()
+    return create_service(film)
     
 @router.get("/filmes", status_code=200, response_model=ListFilmResponseModel)
 def list_films():
