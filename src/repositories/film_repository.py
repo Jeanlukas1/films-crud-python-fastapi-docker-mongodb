@@ -7,3 +7,9 @@ def create_repository(film_dict):
     
 def list_repository():
     return film_collection.find()
+
+def update_repository(_id, film):
+    return film_collection.update_one(
+        {"_id": ObjectId(_id)},
+        {"$set": film_dict(film)}
+        )
