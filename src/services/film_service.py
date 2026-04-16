@@ -1,8 +1,7 @@
 from fastapi import HTTPException
 from bson import ObjectId
-from routes.film_route import *
-from schemas.film_schema import *
-from repositories.film_repository import *
+from src.schemas.film_schema import *
+from src.repositories.film_repository import *
 
 def create_service(film: Film):
     film_dict = film.model_dump(mode="json")
@@ -13,12 +12,12 @@ def create_service(film: Film):
         "id": str(result.inserted_id)
     }
 
-def format_id(films: list):
-    for film in list_repository():
-        film["_id"] = str(film["_id"])
+def format_id(film):
+    film["_id"] = str(film["_id"])
+    return film
 
 def list_service():
-    films = [films.append(format_id(films))]
+    films = [format_id(film) for film in list_repository()]
     
     length = len(films)
     
