@@ -13,3 +13,6 @@ class CreateFilmResponseModel(BaseModel):
 class ListFilmResponseModel(BaseModel):
     films: object
     length: int
+    
+class UpdateFilmRespondeModel(BaseModel):
+    message: str

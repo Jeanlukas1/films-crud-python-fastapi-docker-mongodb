@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from services.film_service import *
+from schemas.film_schema import *
 
 router = APIRouter()
 
@@ -11,7 +12,7 @@ def create_film(film: Film):
 def list_films():
     return list_service()
 
-@router.put("/filmes/{_id}", status_code=200)
+@router.put("/filmes/{_id}", status_code=200, response_model=UpdateFilmResponseModel)
 def update_film(_id: str, film: Film):
     film_dict = film.model_dump(mode="json")
     result = film_collection.update_one(
