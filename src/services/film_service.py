@@ -33,7 +33,8 @@ def list_service():
     }
     
 def update_service(_id, film):
-    result = update_repository(_id, film)
+    data = film_dict(film)
+    result = update_repository(_id, data)
     
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Film not found")
