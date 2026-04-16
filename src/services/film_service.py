@@ -16,12 +16,9 @@ def create_service(film: Film):
 def format_id(films: list):
     for film in list_repository():
         film["_id"] = str(film["_id"])
-        films.append(film)
 
 def list_service():
-    films = []
-
-    format_id()
+    films = [films.append(format_id(films))]
     
     length = len(films)
     
