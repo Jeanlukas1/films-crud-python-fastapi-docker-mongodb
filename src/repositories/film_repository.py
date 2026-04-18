@@ -1,5 +1,4 @@
 from src.db.film_db import film_collection
-from src.schemas.film_schema import Film
 
 def create_repository(film_dict: dict):
     return film_collection.insert_one(film_dict)
