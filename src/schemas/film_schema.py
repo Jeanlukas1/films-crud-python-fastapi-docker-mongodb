@@ -11,7 +11,7 @@ class CreateFilmResponseModel(BaseModel):
     id: str
     
 class ListFilmResponseModel(BaseModel):
-    films: object
+    films: list[Film]
     length: int
     
 class UpdateFilmRespondeModel(BaseModel):
