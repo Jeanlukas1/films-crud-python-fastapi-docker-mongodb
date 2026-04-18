@@ -38,8 +38,13 @@ def get_by_id_service(_id):
             return product
         else:
             raise HTTPException(status_code=404 ,detail="Product not found")
-    except:
-       raise HTTPException(status_code=404, detail="Invalid ID")
+    
+    except HTTPException:
+        raise
+    
+    except Exception as e:
+        print("error: ", e)
+        raise HTTPException(status_code=404, detail="Internal server error")
     
 def list_service():
     try:
@@ -47,6 +52,8 @@ def list_service():
         
         length = len(films)
         
+        if not films:
+            return films
         return {
             "films": films, 
             "length": length
@@ -54,18 +61,50 @@ def list_service():
     
     except HTTPException:
         raise
+    
+    except Exception as e:
+        print("error: ", e)
+        raise HTTPException(
+            status_code= 500,
+            detail= "Internal server error"
+        )
         
 def update_service(_id, film):
-    data = film_dict(film)
-    result = update_repository(_id, data)
+    try:
+        data = film_dict(film)
+        result = update_repository(_id, data)
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Film not found")
+        return {"message": "Film updated succefully!"}
     
-    if result.matched_count == 0:
-        raise HTTPException(status_code=404, detail="Film not found")
-    return {"message": "Film updated succefully!"}
-
+    except HTTPException:
+        raise 
+    
+    except Exception as e:
+        print("error: ", e)
+        raise HTTPException(
+            status_code= 500,
+            detail= "Internal server erro"
+        )
+    
 def delete_service(_id):
-    result = delete_repository(_id)
+    try:
+        result = delete_repository(_id)
 
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404 , detail="Film not found!")
-    return {"message": "Film deleted succefully!", "id": _id}
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404 , detail="Film not found!")
+        return {
+            "message": "Film deleted succefully!", 
+            "id": _id
+        }
+    
+    except HTTPException:
+        return
+    
+    except Exception as e:
+        print("error: ", e)
+        raise HTTPException(
+            status_code= 500,
+            detail= "Internal server error"
+        )
