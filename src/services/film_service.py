@@ -31,8 +31,8 @@ def create_service(film: Film) -> dict:
     except Exception as e:
         print("error: ", e)
         raise HTTPException(
-            status_code= 500,
-            detail= "Internal server error"
+            status_code=500,
+            detail="Internal server error"
         )
 
 def get_by_id_service(_id: str) -> dict:
@@ -70,8 +70,8 @@ def list_service() -> dict:
     except Exception as e:
         print("error: ", e)
         raise HTTPException(
-            status_code= 500,
-            detail= "Internal server error"
+            status_code=500,
+            detail="Internal server error"
         )
         
 def update_service(_id: str, film: Film) -> dict:
@@ -90,8 +90,8 @@ def update_service(_id: str, film: Film) -> dict:
     except Exception as e:
         print("error: ", e)
         raise HTTPException(
-            status_code= 500,
-            detail= "Internal server error"
+            status_code=500,
+            detail="Internal server error"
         )
     
 def delete_service(_id: str):
@@ -112,6 +112,6 @@ def delete_service(_id: str):
     except Exception as e:
         print("error: ", e)
         raise HTTPException(
-            status_code= 500,
-            detail= "Internal server error"
+            status_code=500,
+            detail="Internal server error"
         )
